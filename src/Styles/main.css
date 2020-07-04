@@ -1,0 +1,11 @@
+.OptionBar {
+  background-color: black;
+  height: 20%;
+}
+
+html, body, #root, App {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+/*# sourceMappingURL=main.css.map */

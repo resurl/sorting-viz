@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,UAAU,CAAC;EACP,gBAAgB,EAAE,KAAK;EACvB,MAAM,EAAC,GAAG;CACb;;ADDD,AAAA,IAAI,EAAE,IAAI,EAAC,KAAK,EAAC,GAAG,CAAC;EACjB,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,KAAK;CACpB",
+    "sources": [
+        "main.scss",
+        "Partials/_optionbar.scss",
+        "Partials/_visualizer.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}
