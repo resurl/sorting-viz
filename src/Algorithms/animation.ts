@@ -10,13 +10,14 @@ export class Data {
         this.animation = state;
     }
 
+    /*  should not be used i think
     public setState(val: State) {
         this.animation = val
     }
 
     public setNewIdx(val: number) {
         this.newIdx = val
-    }
+    } */
 
     public getIdx(): number {
         return this.idx

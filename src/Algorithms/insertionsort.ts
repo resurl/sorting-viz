@@ -10,24 +10,47 @@ import { Data, State, init } from './animation'
 
 function sort(arr: Data[]): Data[] {
     let queue: Data[] = []
+    //console.log(`array to be sorted: ${arr}`)
+
     for(let i = 0; i < arr.length; i++) {
+        //console.log(`${arr[i]}`)
         let cursor: Data = new Data(i,i,arr[i].getVal(),State.Cursor)
         queue.push(cursor)
         for(let j = i; j > 0; j--) {
-            if (arr[j] < arr[-1]) {
+            if (arr[j].getVal() < arr[j-1].getVal()) {
+                let swapped_j: Data = new Data(j,j-1,arr[j].getVal(),State.Compared)
+                let swapped_j1: Data = new Data(j-1,j,arr[j-1].getVal(),State.Compared)
+                queue.push(swapped_j)
+                queue.push(swapped_j1)
                 swap(arr,j,j-1)
+                queue.push(Data.copy(swapped_j,State.Unsorted))
+                queue.push(Data.copy(swapped_j1,State.Unsorted))
             }
         }
         queue.push(Data.copy(cursor,State.Unsorted))
     }
-    return arr;
+
+    // visual assertion that everything is sorted
+    for (let j = 1; j < arr.length; j++) {
+        if (arr[j-1].getVal() < arr[j].getVal()){
+            queue.push(new Data(j-1,j-1,arr[j].getVal(),State.Sorted))
+        } else
+            throw new Error('Array not sorted!')
+    }
+    
+    /* for(let i = 0; i < arr.length; i++) 
+        console.log(arr[i].getVal()) */
+
+    return queue;
 }
 
 const swap = (list: Data[], i: number, j: number) => {
     [list[i], list[j]] = [list[j], list[i]]
 }
 
-export default function insertionSort(arr: any[]): any[] {
+ function insertionSort(arr: number[]): Data[] {
     let animationArr = init(arr)
     return sort(animationArr)
 }
+
+console.log(insertionSort([10,9,8,7,6,5,4,3,2,1]))
