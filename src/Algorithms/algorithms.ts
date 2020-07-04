@@ -1,3 +1,5 @@
+// reference for algorithms to be performed without animation
+
 export function insertionsort(arr: number[]): number[] {
     for(let i = 0; i < arr.length; i++) {
         for(let j = i; j > 0; j--) {
@@ -54,5 +56,6 @@ const swap = (list: number[], i: number, j: number) => {
 
 module.exports = {
     mergesort,
+    quicksort,
     insertionsort
 }

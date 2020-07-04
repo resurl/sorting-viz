@@ -7,11 +7,14 @@ function setHeight(value: number): object {
     });
 }
 
-interface Property {
-    value: number;
+interface DataProperty {
+    value: number,
+    isCursor?: boolean, 
+    isCompared?: boolean,
+    isSorted?: boolean
 }
 
-export default function Data(props: Property) {
+export default function Data(props: DataProperty) {
     const { value } = props
 
     return (

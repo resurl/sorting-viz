@@ -1,11 +1,7 @@
 import React from 'react'
 import Data from './Data'
 
-enum Algo { 
-    Insert="insertionSort", 
-    Merge="mergeSort",
-    Quick="quickSort"
-}
+enum Algo { Insert,Merge,Quick }
 
 interface VisualizerState {
     numObjects: number;
@@ -39,6 +35,8 @@ export default class Visualizer extends React.Component<{},VisualizerState> {
             arr.map( (val) => 
                 <Data value={val} />));
     }
+
+
 
     render() {
         const arr = this.state.array;
