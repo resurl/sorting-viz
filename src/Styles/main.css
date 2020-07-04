@@ -1,11 +1,61 @@
 .OptionBar {
   background-color: black;
-  height: 20%;
+  height: 10%;
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
-html, body, #root, App {
+.Visualizer {
+  -webkit-box-flex: 12;
+      -ms-flex-positive: 12;
+          flex-grow: 12;
+  width: 100%;
+  padding: 3% 0;
+}
+
+.Visualizer__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  height: 100%;
+  margin: 0 3%;
+}
+
+.Data {
+  background-color: dodgerblue;
+  color: white;
+  width: 100%;
+  margin: 0 0.1%;
+  height: 1%;
+}
+
+html, body, #root, .App {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  height: 100%;
+}
+
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=main.css.map */

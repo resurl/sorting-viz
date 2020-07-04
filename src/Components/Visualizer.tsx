@@ -1,4 +1,5 @@
 import React from 'react'
+import Data from './Data'
 
 enum Algo { 
     Insert="insertionSort", 
@@ -35,17 +36,17 @@ export default class Visualizer extends React.Component<{},VisualizerState> {
 
     genArrayBars(arr: number[]) {
         return (
-            arr.map( (val,idx) => 
-                <div className='Visualizer__data' key={idx}>
-                    {val}
-                </div>));
+            arr.map( (val) => 
+                <Data value={val} />));
     }
 
     render() {
         const arr = this.state.array;
         return (
             <div className="Visualizer">
-                {this.genArrayBars(arr)}
+                <div className="Visualizer__wrapper">
+                    {this.genArrayBars(arr)}
+                </div>
             </div>
         );
     }
