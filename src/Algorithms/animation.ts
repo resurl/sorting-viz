@@ -1,23 +1,21 @@
+/**
+ *  Represents an animation state
+ *  idx: the original position of an object
+ *  newIdx: the changed position of an object
+ *  value: the value of the object
+ *  animation: the animation status of the object
+ */
 export class Data {
-    private idx: number
+    private idx: number         // should remain unchanged from initialization
     private newIdx: number
-    private value: number
-    private animation: State
+    private value: number       // should remain unchanged from initialization
+    private animation: State    
     public constructor(index:number, changed:number, val:number, state: State) {
         this.idx = index;
         this.newIdx = changed;
         this.value = val;
         this.animation = state;
     }
-
-    /*  should not be used i think
-    public setState(val: State) {
-        this.animation = val
-    }
-
-    public setNewIdx(val: number) {
-        this.newIdx = val
-    } */
 
     public getIdx(): number {
         return this.idx
@@ -35,18 +33,20 @@ export class Data {
         return this.newIdx
     }
 
+    // create new animation information based on a previously unchanged object
     static copy(orig: Data, state?: State, changed?: number) {
         return new Data(orig.getIdx(), (changed as number) | orig.getNewIdx(), orig.getVal(), state as State)
     }
 }
 
-export enum State { Unsorted, Sorted, Cursor, Compared };
 
-// init array to have original state [idx, idx, value, Unsorted]
+// init array to have original state {idx, idx, value, Unsorted}
 export function init(arr: number[]): Data[] {
     let animationArray:Data[] = arr.map((val, idx) => new Data(idx, idx,val, State.Unsorted))
     return animationArray
 }
+
+export enum State { Unsorted, Sorted, Cursor, Compared };
 
 module.exports = {
     State,

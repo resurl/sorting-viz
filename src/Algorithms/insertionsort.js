@@ -10,9 +10,9 @@ var animation_1 = require("./animation");
 // 3) at the end, iterate through every index and change state to State.Sorted
 function sort(arr) {
     var queue = [];
-    console.log("array to be sorted: " + arr);
+    //console.log(`array to be sorted: ${arr}`)
     for (var i = 0; i < arr.length; i++) {
-        console.log("" + arr[i]);
+        //console.log(`${arr[i]}`)
         var cursor = new animation_1.Data(i, i, arr[i].getVal(), animation_1.State.Cursor);
         queue.push(cursor);
         for (var j = i; j > 0; j--) {
@@ -36,16 +36,23 @@ function sort(arr) {
         else
             throw new Error('Array not sorted!');
     }
-    for (var i = 0; i < arr.length; i++)
-        console.log(arr[i].getVal());
+    /* for(let i = 0; i < arr.length; i++)
+        console.log(arr[i].getVal()) */
     return queue;
 }
 var swap = function (list, i, j) {
     var _a;
     _a = [list[j], list[i]], list[i] = _a[0], list[j] = _a[1];
 };
+/**
+ * Provides steps to animate an insertion sorted collection
+ * of data
+ * @param arr  unsorted array to be animated
+ * @returns  an array containing animation steps
+ */
 function insertionSort(arr) {
     var animationArr = animation_1.init(arr);
     return sort(animationArr);
 }
-console.log(insertionSort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]));
+exports["default"] = insertionSort;
+console.log(insertionSort([3, 2, 1]));
