@@ -1,4 +1,7 @@
+import insertionSort from './insertionsort'
 
+let algorithms;
+export default algorithms = [insertionSort]
 /* // reference for algorithms to be performed without animation
 function ref_insertion(arr: number[]): number[] {
     for(let i = 0; i < arr.length; i++) {
@@ -54,4 +57,3 @@ const swap = (list: number[], i: number, j: number) => {
     [list[i], list[j]] = [list[j], list[i]]
 }
  */
-export { default as insertionSort } from './insertionsort'

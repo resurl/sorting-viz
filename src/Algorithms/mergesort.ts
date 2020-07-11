@@ -1,17 +1,11 @@
-import * as Animation from './animation'
+import { Animate, State, init } from './animation'
 
 // for each of the algorithms, we want to return a state [idx, newIdx, value, state]
-// each data bar that is affected by the algorithm will change state somehow
+// merge sorted elements have the following behaviours:
+// 
 
-// to make things easier, we reinitialize the array-to-be-sorted as 
-// [idx, 0, value, Unchanged] for each value.
-// this happens before sort method runs
-
-// in mergesort, animation movements are in merge:
-// when comparing l[0], r[0] store {unchanged idx, idx, unchanged value, stateTypes.Compared}
-// twice for both indices, then after, set them back to Unsorted, unless one is in the final
-// position
-
+// might have to change this to iterative merge sort so that it's easier 
+// to work in animation
 function sort(arr: any[]): any[] {
 
     const merge = (l:number[], r:number[]) => {
@@ -36,7 +30,6 @@ function sort(arr: any[]): any[] {
  * @returns array of objects representing animation states
  */
 export default function mergesort(arr: number[]): any[] {
-    // init 
-    let animations = Animation.init(arr)
+    let animations = init(arr)
     return sort(animations)
 }
