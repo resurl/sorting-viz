@@ -8,21 +8,26 @@ import { Animate, State, init } from './animation'
  * @param arr array to be sorted
  * @returns a queue of animation states
  */
-function sort(arr: Animate[]): Animate[] {
+function sort(arr: Animate[], data: number[]): Animate[] {
     let queue: Animate[] = []
     for(let i = 0; i < arr.length; i++) {
-        let ptr = new Animate(i, arr[i].getVal(), State.Cursor) // select i.
+        let ptr = new Animate(i, arr[i].getVal(), State.Cursor) // keep track of the cursor.
         queue.push(ptr)
         for(let j = i; j > 0; j--) {
             if (arr[j].getVal() < arr[j-1].getVal()) {
+                // keep track of what's being switched
                 let jSwap = new Animate(j-1, arr[j].getVal(), State.Compared)
                 let prevJswap = new Animate(j, arr[j-1].getVal(), State.Compared)
                 queue.push(jSwap)
                 queue.push(prevJswap)
-                swap(arr,j,j-1)
+                
+                swap(arr,data,j,j-1)
+                
+                // elements are switched, move on to next pair
                 queue.push(Animate.copy(jSwap, State.Unsorted))
                 queue.push(Animate.copy(prevJswap, State.Unsorted))
                 
+                // if the cursor's state was overwritten, restore it
                 if (j===i)
                     queue.push(new Animate(i, arr[i].getVal(),State.Cursor))
             }
@@ -31,18 +36,23 @@ function sort(arr: Animate[]): Animate[] {
         
     }
     
+    // assert that everything is sorted
     queue.push(new Animate(0, arr[0].getVal(), State.Sorted))
     for (let j = 1; j < arr.length; j++) {
         if (arr[j-1] > arr[j])
             throw new Error('Array not sorted!')
         queue.push(new Animate(j, arr[j].getVal(), State.Sorted))
     }
+    
+    // for debug
+    // console.log(queue)
 
     return queue;
 }
 
-const swap = (list: Animate[], i: number, j: number) => {
-    [list[i], list[j]] = [list[j], list[i]]
+const swap = (list: Animate[], list2:number[], i: number, j: number) => {
+    [list[i], list[j]] = [list[j], list[i]];
+    [list2[i], list2[j]] = [list2[j], list2[i]]
 }
 
 /**
@@ -53,5 +63,5 @@ const swap = (list: Animate[], i: number, j: number) => {
  */
 export default function insertionSort(arr: number[]): Animate[] {
     let animationArr = init(arr)
-    return sort(animationArr)
+    return sort(animationArr, arr)
 }

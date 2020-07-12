@@ -1,6 +1,9 @@
 .OptionBar {
-    background-color: black;
+    background-color: #fff;
     height:10%;
     width:100%;
-    flex-grow: 1
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
