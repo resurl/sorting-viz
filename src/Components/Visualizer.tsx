@@ -1,7 +1,7 @@
 import Algorithms from '../Algorithms/algorithms'
 import { Animate, State } from '../Algorithms/animation' 
 import Bar from './Bar'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 interface VisualizerProps {
     scale: number,
@@ -72,9 +72,9 @@ export default class Visualizer extends React.Component<VisualizerProps,Visualiz
         let id = setInterval(() => {
             if (animations.length) {
                 let ani_state = animations.shift() as Animate
-                let idx = ani_state.getIdx()
-                barElms[idx].style.backgroundColor=ani_state.getAnimation()
-                barElms[idx].style.height = (ani_state.getVal()/10) + '%'    
+                let idx = ani_state.index
+                barElms[idx].style.backgroundColor=ani_state.state
+                barElms[idx].style.height = (ani_state.val/10) + '%'    
             } else {
                 for (let i = 0; i <buttons.length; i++)
                     buttons[i].disabled = false

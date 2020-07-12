@@ -6,29 +6,35 @@
  */
 export class Animate {
     private idx: number         // should remain unchanged from initialization
+    private curr: number
     private value: number
     private animation: State    
-    public constructor(index:number, val:number, state: State) {
+    public constructor(index:number, current: number, val:number, state: State) {
         this.idx = index;
+        this.curr = current;
         this.value = val;
         this.animation = state;
     }
 
-    public getIdx(): number {
+    public get index() : number {
         return this.idx
     }
+    
+    public get current() : number {
+        return this.curr
+    }
 
-    public getVal(): number {
+    public get val() : number {
         return this.value
     }
 
-    public getAnimation(): State {
+    public get state() : State {
         return this.animation
     }
 
     // create new animation information based on a previously unchanged object
-    static copy(orig: Animate, state?: State) {
-        return new Animate(orig.getIdx(), orig.getVal(), state as State)
+    static copy(orig: Animate, newIdx: number, state?: State) {
+        return new Animate(orig.index, newIdx, orig.val, state as State)
     }
 }
 
@@ -36,6 +42,6 @@ export enum State { Unsorted='#9c9c9c', Sorted='#4ead67', Cursor='#4ead67', Comp
 
 // init array to have original state {idx, value, Unsorted}
 export function init(arr: number[]): Animate[] {
-    let animationArray:Animate[] = arr.map((val, idx) => new Animate(idx, val, State.Unsorted))
+    let animationArray:Animate[] = arr.map((val, idx) => new Animate(idx, idx, val, State.Unsorted))
     return animationArray
 }

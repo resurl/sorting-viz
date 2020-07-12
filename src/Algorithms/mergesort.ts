@@ -6,13 +6,13 @@ import { Animate, State, init } from './animation'
 
 // might have to change this to iterative merge sort so that it's easier 
 // to work in animation
-function sort(arr: any[]): any[] {
+function sort(arr: Animate[]): Animate[] {
 
-    const merge = (l:number[], r:number[]) => {
+    const merge = (l:Animate[], r:Animate[]) => {
         let sorted = []
         while (l.length && r.length) {
-            if (l[0] < r[0]) sorted.push(l.shift() as number);
-            else sorted.push(r.shift() as number);
+            if (l[0].val < r[0].val) sorted.push(l.shift() as Animate);
+            else sorted.push(r.shift() as Animate);
         }
         return sorted.concat(l.slice().concat(r.slice()))
     }
