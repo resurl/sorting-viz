@@ -22,7 +22,7 @@ export class App extends React.Component<{}, AppState> {
     super(props)
     this.state = {
       numObjects: 25,
-      algorithm: Algo.Insertion,
+      algorithm: Algo.Merge,
       play: false,
       reset: false
     }

@@ -1,27 +1,68 @@
 import { Animate, State, init } from './animation'
 
-// for each of the algorithms, we want to return a state [idx, newIdx, value, state]
-// merge sorted elements have the following behaviours:
-// 
+// merge sorted element behaviour to emulate:
+// 1) highlight the size of the subarray
+// 2) swap 
 
-// might have to change this to iterative merge sort so that it's easier 
-// to work in animation
-function sort(arr: Animate[]): Animate[] {
 
-    const merge = (l:Animate[], r:Animate[]) => {
-        let sorted = []
-        while (l.length && r.length) {
-            if (l[0].val < r[0].val) sorted.push(l.shift() as Animate);
-            else sorted.push(r.shift() as Animate);
+function sort(arr: Animate[], data: number[]): Animate[] {
+    let queue: Animate[] = []
+    let sorted: Animate[] = arr
+    let len: number = arr.length
+    let buffer: Animate[] = []
+
+    for (let sz = 1; sz < len+len; sz *= 2) {
+        for (let pos = 0; pos < len; pos += 2*sz) {
+            let left = pos,
+                right = Math.min(left+sz, len),
+                leftBound = right,
+                rightBound = Math.min(right+sz, len),
+                i = left
+            
+            
+            while (left < leftBound && right < rightBound) {
+                queue.push(new Animate(left,left,sorted[left].val,State.Compared))
+                if (sorted[left].val < sorted[right].val) {
+                    buffer[i] = sorted[left]
+                    queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))
+                    i++
+                    left++
+                }
+                else {
+                    buffer[i] = sorted[right]
+                    queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))
+                    i++
+                    right++
+                }
+            }
+            
+            while (left < leftBound) {
+                queue.push(new Animate(left,left,sorted[left].val,State.Compared))
+                buffer[i] = sorted[left]
+                queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))
+                i++
+                left++
+            }
+
+            while (right < rightBound){
+                queue.push(new Animate(right,right, sorted[right].val,State.Compared))
+                buffer[i] = sorted[right]
+                queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))    
+                i++
+                right++
+            }
         }
-        return sorted.concat(l.slice().concat(r.slice()))
+        let temp = sorted
+        sorted = buffer
+        buffer = temp
     }
 
-    if (arr.length < 2) return arr;
-    let mid = Math.floor(arr.length/2);
-    let left = sort(arr.slice(0,mid));
-    let right = sort(arr.slice(mid+1, arr.length-1));
-    return merge(left,right);
+    /* for (let i = 1; i < arr.length; i++)   {
+        if (arr[i-1].val > arr[i].val)
+            console.log('not sorted ')
+        console.log(`${arr[i-1].val} ${arr[i].val}`)} */
+
+    return queue
 }
 
 /**
@@ -31,5 +72,5 @@ function sort(arr: Animate[]): Animate[] {
  */
 export default function mergesort(arr: number[]): any[] {
     let animations = init(arr)
-    return sort(animations)
+    return sort(animations, arr)
 }
