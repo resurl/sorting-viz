@@ -34,5 +34,5 @@ const swap = (list: Animate[], i: number, j: number) => {
  */
 export default function quickSort(arr: number[]): any[] {
     let animations = init(arr)
-    return sort(animations,0,arr.length-1)
+    return sort(animations,0,animations.length-1)
 }

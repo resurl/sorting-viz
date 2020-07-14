@@ -22,7 +22,6 @@ export default class Button extends React.Component<Props,{}> {
             <button className='Button' onClick={this.handleClick}>
                 {behaviour}
             </button>
-
         )
     }
 }

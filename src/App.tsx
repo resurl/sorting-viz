@@ -30,6 +30,7 @@ export class App extends React.Component<{}, AppState> {
     this.handleReset = this.handleReset.bind(this)
     this.handleAlgorithm = this.handleAlgorithm.bind(this)
     this.handleScale = this.handleScale.bind(this)
+    this.convertAlgoToString = this.convertAlgoToString.bind(this)
   }
     
   handlePlay(fn: Function) {
@@ -46,8 +47,16 @@ export class App extends React.Component<{}, AppState> {
     this.setState({ numObjects: val })
   }
 
-  handleAlgorithm() {
-    // when selected algorithm is changed, change state's algorithm accordingly
+  handleAlgorithm(val: number) {
+    this.setState({algorithm: val})
+  }
+
+  convertAlgoToString(algo: Algo) {
+    switch(algo) {
+      case Algo.Insertion: return 'insertion'
+      case Algo.Merge: return 'merge'
+      case Algo.Quick: return 'quick'
+    }
   }
 
 
@@ -60,7 +69,7 @@ export class App extends React.Component<{}, AppState> {
     const optionBar = (
       <div className="OptionBar">
         <ScaleSlider onScaleChange={this.handleScale} value={numObjects} />
-        <AlgorithmSelect onAlgoChange={this.handleAlgorithm} /> 
+        <AlgorithmSelect onAlgoChange={this.handleAlgorithm} algo={this.state.algorithm}/> 
         <Button behaviour='Reset' clickCallback={this.handleReset} /> 
         <Button behaviour='Play' clickCallback={this.handlePlay} /> 
       </div>
