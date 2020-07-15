@@ -18,8 +18,7 @@ interface VisualizerState {
 
 const begColor = '#336aeb',
     begGreen = 0x6a,
-    endGreen = 0xeb,
-    endColor = '#33ebeb'
+    endGreen = 0xeb
 
 const colorMap = (idx: number, len: number, state: State): string => {
     if (state === State.Unsorted) {
@@ -79,7 +78,7 @@ export default class Visualizer extends React.Component<VisualizerProps,Visualiz
         this.setState({positions: pos}) 
         
         // generate the JSX
-        // color mapping should be relative to its height
+        // color mapping should be relative to its height/position relative to its sorted self
         let res = arr.map( (val,idx) => 
         <Bar value={val} animation={colorMap(sorted.indexOf(val),arr.length,State.Unsorted)} key={idx} />);
         this.setState({bars: res})
@@ -110,7 +109,6 @@ export default class Visualizer extends React.Component<VisualizerProps,Visualiz
     }
 
     render() {
-        //const bars = this.genArrayBars(this.state.data)
         return (
             <div className="Visualizer">
                 <div className="Visualizer__wrapper">
