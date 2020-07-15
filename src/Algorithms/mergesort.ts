@@ -14,33 +14,33 @@ function sort(arr: Animate[], data: number[]): Animate[] {
                 i = left
             while (left < leftBound && right < rightBound) {
                 if (sorted[left].val < sorted[right].val) {
-                    queue.push(new Animate(left,i,sorted[i].val,State.Compared))
+                    queue.push(new Animate(left,sorted[i].val,State.Compared))
                     buffer[i] = sorted[left]
-                    queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))
+                    queue.push(new Animate(left,buffer[i].val,State.Unsorted))
                     i++
                     left++
                 }
                 else {
-                    queue.push(new Animate(right,i,sorted[i].val,State.Compared))
+                    queue.push(new Animate(right,sorted[i].val,State.Compared))
                     buffer[i] = sorted[right]
-                    queue.push(new Animate(right,i,buffer[i].val,State.Unsorted))
+                    queue.push(new Animate(right,buffer[i].val,State.Unsorted))
                     i++
                     right++
                 }
             }
             
             while (left < leftBound) {
-                queue.push(new Animate(left,i,sorted[i].val,State.Compared))
+                queue.push(new Animate(left,sorted[i].val,State.Compared))
                 buffer[i] = sorted[left]
-                queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))
+                queue.push(new Animate(left,buffer[i].val,State.Unsorted))
                 i++
                 left++
             }
 
             while (right < rightBound){
-                queue.push(new Animate(right,i,sorted[i].val,State.Compared))
+                queue.push(new Animate(right,sorted[i].val,State.Compared))
                 buffer[i] = sorted[right]
-                queue.push(new Animate(right,i,buffer[i].val,State.Unsorted))    
+                queue.push(new Animate(right,buffer[i].val,State.Unsorted))    
                 i++
                 right++
             }
@@ -51,8 +51,8 @@ function sort(arr: Animate[], data: number[]): Animate[] {
     }
 
     for (let i = 0; i < sorted.length; i++) {
+        queue.push(new Animate(i,sorted[i].val,State.Sorted))
         data[i] = sorted[i].val
-        queue.push(new Animate(i,i,sorted[i].val,State.Sorted))
     }
 
     return queue

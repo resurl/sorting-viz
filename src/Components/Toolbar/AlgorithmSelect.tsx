@@ -14,9 +14,9 @@ export default function AlgorithmSelect(props: Props) {
 
     return (
         <select value={algo} className='AlgoSelect' onChange={handleChange}>
-            <option value='0'>Insertion</option>
-            <option value='1'>Merge</option>
-            <option value='2'>Quick</option>
+            <option className='AlgoSelect_op' value='0'>Insertion</option>
+            <option className='AlgoSelect_op' value='1'>Merge</option>
+            <option className='AlgoSelect_op' value='2'>Quick</option>
         </select>
 
     )

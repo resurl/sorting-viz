@@ -29,8 +29,6 @@ export default class Visualizer extends React.Component<VisualizerProps,Visualiz
     }
     componentDidMount() {
         this.newArray(this.props.scale)
-        // for testing 
-        // setTimeout(this.animate.bind(this), 1000)
     }
 
     componentDidUpdate(prevProps: any) {
@@ -52,15 +50,13 @@ export default class Visualizer extends React.Component<VisualizerProps,Visualiz
     }
 
     genArrayBars(arr: number[]) {
-        /* return arr.map( (val,idx) => 
-            <Bar value={val} animation={State.Unsorted} key={idx} />); */
         let res = arr.map( (val,idx) => 
         <Bar value={val} animation={State.Unsorted} key={idx} />);
         this.setState({bars: res})
         
         let barElms = document.getElementsByClassName('Bar') as HTMLCollectionOf<HTMLElement>
         for (let i = 0; i < barElms.length; i++)
-            barElms[i].style.backgroundColor = '#9c9c9c'
+            barElms[i].style.backgroundColor = State.Unsorted
     }
 
     animate() {

@@ -3,8 +3,6 @@ import Visualizer from './Components/Visualizer'
 import Button from './Components/Toolbar/Button';
 import AlgorithmSelect from './Components/Toolbar/AlgorithmSelect'
 import ScaleSlider from './Components/Toolbar/ScaleSlider'
-import Algorithms from './Algorithms/algorithms'
-import { Animate } from './Algorithms/animation'
 import './App.css';
 import './Styles/main.css'
 

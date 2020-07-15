@@ -27,7 +27,7 @@ export default class ScaleSlider extends React.Component<Props,{}> {
                     className='slider'
                     onChange={this.handleChange}
                     />
-                <p>{value}</p>
+                <p className='ScaleSlider__text'>{value}</p>
             </div>
         )
     } 
