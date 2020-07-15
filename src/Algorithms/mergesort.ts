@@ -50,8 +50,10 @@ function sort(arr: Animate[], data: number[]): Animate[] {
         buffer = temp
     }
 
-    for (let i = 0; i < sorted.length; i++)
+    for (let i = 0; i < sorted.length; i++) {
+        data[i] = sorted[i].val
         queue.push(new Animate(i,i,sorted[i].val,State.Sorted))
+    }
 
     return queue
 }
