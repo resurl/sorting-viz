@@ -62,8 +62,8 @@
 }
 
 .Button {
-  background: -webkit-gradient(linear, left top, right top, from(dodgerblue), to(#30bbe6));
-  background: linear-gradient(90deg, dodgerblue, #30bbe6);
+  background: -webkit-gradient(linear, left top, right top, from(#3389eb), to(#33c0eb));
+  background: linear-gradient(90deg, #3389eb, #33c0eb);
   border: none;
   border-radius: 1em;
   -webkit-box-shadow: 0 2px 5px 2px rgba(30, 144, 255, 0.2);

@@ -1,7 +1,4 @@
-import { Animate, State, init } from './animation'
-// for each of the algorithms, we want to return a tuple [index, value, state]
-// each data bar that is affected by the algorithm will change state somehow
-
+ import { Animate, init } from './animation'
 function partition(items: Animate[], queue: Animate[], left: number, right: number) {
     var pivot   = items[Math.floor((right + left) / 2)].val, //middle element
         i       = left, //left pointer
@@ -38,15 +35,9 @@ function quickSortHelper(items: Animate[], queue: Animate[], left:number, right:
 
 function sort(arr: Animate[],queue:Animate[],data:number[]) {
     quickSortHelper(arr,queue,0,arr.length-1)
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i].val < arr[i-1].val)
-            throw new Error('Array not sorted')
-    }
-
-    for(let i = 0; i< arr.length;i++) {
-        queue.push(new Animate(i,arr[i].val,State.Sorted))
+    //Animate.assertSort(arr,queue)
+    for (let i = 0; i < data.length; i++)
         data[i] = arr[i].val
-    }
     return queue
 }
 /**
@@ -59,4 +50,4 @@ export default function quickSort(arr: number[]): any[] {
     let queue: Animate[] = []
     sort(animations,queue,arr)
     return queue 
-}
+} 
