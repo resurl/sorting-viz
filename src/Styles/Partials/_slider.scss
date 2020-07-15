@@ -1,8 +1,16 @@
 .ScaleSlider {
     display:flex;
     width:35%;
+    margin: 0 10%;
     &__text {
         text-align: center;
         width: 98%;
+        
+    }
+}
+
+@media (max-width: 480px) {
+    .ScaleSlider {
+        margin: 0;
     }
 }

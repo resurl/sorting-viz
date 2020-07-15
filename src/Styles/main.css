@@ -108,7 +108,7 @@
 
 @media (max-width: 480px) {
   .AlgoSelect {
-    height: 40%;
+    height: 2.5em;
   }
 }
 
@@ -117,11 +117,18 @@
   display: -ms-flexbox;
   display: flex;
   width: 35%;
+  margin: 0 10%;
 }
 
 .ScaleSlider__text {
   text-align: center;
   width: 98%;
+}
+
+@media (max-width: 480px) {
+  .ScaleSlider {
+    margin: 0;
+  }
 }
 
 .Button {
