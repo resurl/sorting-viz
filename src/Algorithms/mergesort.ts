@@ -10,18 +10,18 @@ function sort(arr: Animate[], data: number[]): Animate[] {
     let sorted: Animate[] = arr
     let len: number = arr.length
     let buffer: Animate[] = []
-
+    console.log(data)
     for (let sz = 1; sz < len+len; sz *= 2) {
+        console.log('size: ' + sz)
         for (let pos = 0; pos < len; pos += 2*sz) {
+            console.log('pos: ' + pos)
             let left = pos,
                 right = Math.min(left+sz, len),
                 leftBound = right,
                 rightBound = Math.min(right+sz, len),
                 i = left
-            
-            
+            console.log(sorted[left].val + ' ' + sorted[left].val)
             while (left < leftBound && right < rightBound) {
-                queue.push(new Animate(left,left,sorted[left].val,State.Compared))
                 if (sorted[left].val < sorted[right].val) {
                     buffer[i] = sorted[left]
                     queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))
@@ -37,7 +37,6 @@ function sort(arr: Animate[], data: number[]): Animate[] {
             }
             
             while (left < leftBound) {
-                queue.push(new Animate(left,left,sorted[left].val,State.Compared))
                 buffer[i] = sorted[left]
                 queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))
                 i++
@@ -45,7 +44,6 @@ function sort(arr: Animate[], data: number[]): Animate[] {
             }
 
             while (right < rightBound){
-                queue.push(new Animate(right,right, sorted[right].val,State.Compared))
                 buffer[i] = sorted[right]
                 queue.push(new Animate(left,i,buffer[i].val,State.Unsorted))    
                 i++
