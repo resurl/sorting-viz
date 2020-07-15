@@ -6,7 +6,8 @@ function initBar(value: number, anim: string): object {
         height: barHeight + '%',
         backgroundColor: anim,
         width: '100%',
-        margin: '0 0.1%'
+        margin: '0 0%',
+        borderRadius: '0.5em 0.5em 0 0'
     });
 }
 

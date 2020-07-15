@@ -12,15 +12,36 @@ interface VisualizerProps {
 
 interface VisualizerState {
     data: number[],
-    bars: JSX.Element[]
+    bars: JSX.Element[],
+    positions: number[]
 }
+
+const begColor = '#336aeb',
+    begGreen = 0x6a,
+    endGreen = 0xeb,
+    endColor = '#33ebeb'
+
+const colorMap = (idx: number, len: number, state: State): string => {
+    if (state === State.Unsorted) {
+        let gap = (endGreen - begGreen) / len,
+            base = begColor,
+            greenDiff = idx*gap,
+            greenMap = Math.floor(parseInt(base.substr(3,2),16) + greenDiff),
+            color = base.substr(0,3) + greenMap.toString(16) + base.substr(5,2)
+        return color
+    }
+    else {
+        return state
+    }
+} 
 
 export default class Visualizer extends React.Component<VisualizerProps,VisualizerState> {
     constructor(props: any) {
         super(props)
         this.state = {
             data: [],
-            bars: []
+            bars: [],
+            positions: []
         }
 
         this.newArray = this.newArray.bind(this)
@@ -50,13 +71,18 @@ export default class Visualizer extends React.Component<VisualizerProps,Visualiz
     }
 
     genArrayBars(arr: number[]) {
-        let res = arr.map( (val,idx) => 
-        <Bar value={val} animation={State.Unsorted} key={idx} />);
-        this.setState({bars: res})
+        // get a sorted array so that we can know where they lie after being sorted
+        let sorted = arr.slice();
+        let copy = arr.slice()
+        sorted = sorted.sort((a,b) => a-b);
+        let pos = copy.map( (val) => sorted.indexOf(val))
+        this.setState({positions: pos}) 
         
-        let barElms = document.getElementsByClassName('Bar') as HTMLCollectionOf<HTMLElement>
-        for (let i = 0; i < barElms.length; i++)
-            barElms[i].style.backgroundColor = State.Unsorted
+        // generate the JSX
+        // color mapping should be relative to its height
+        let res = arr.map( (val,idx) => 
+        <Bar value={val} animation={colorMap(sorted.indexOf(val),arr.length,State.Unsorted)} key={idx} />);
+        this.setState({bars: res})
     }
 
     animate() {
@@ -68,15 +94,17 @@ export default class Visualizer extends React.Component<VisualizerProps,Visualiz
         let id = setInterval(() => {
             if (animations.length) {
                 let ani_state = animations.shift() as Animate
+                let curr = ani_state.current
                 let idx = ani_state.index
-                barElms[idx].style.backgroundColor=ani_state.state
-                barElms[idx].style.height = (ani_state.val/10) + '%'    
+                let posis = this.state.positions
+                barElms[curr].style.backgroundColor=colorMap(posis[idx],barElms.length,ani_state.state);
+                barElms[curr].style.height = (ani_state.val/10) + '%'    
             } else {
                 for (let i = 0; i <buttons.length; i++)
                     buttons[i].disabled = false
                 clearInterval(id)
             }
-        }, 1) 
+        }, 10) 
 
 
     }
