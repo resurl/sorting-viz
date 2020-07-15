@@ -1,5 +1,6 @@
 .AlgoSelect {
     padding: 0.5em 0.84em;
+    height: 80%;
     border:none;
     border:1px solid dodgerblue;
     color: rgb(30, 126, 223);
@@ -10,4 +11,10 @@
     background-size: 20%;
     -moz-appearance: none;
     -webkit-appearance: none;
+}
+
+@media (max-width: 480px) {
+    .AlgoSelect {
+        height: 40%;
+    }
 }

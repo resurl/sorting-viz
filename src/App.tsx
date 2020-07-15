@@ -66,10 +66,14 @@ export class App extends React.Component<{}, AppState> {
 
     const optionBar = (
       <div className="OptionBar">
-        <ScaleSlider onScaleChange={this.handleScale} value={numObjects} />
-        <AlgorithmSelect onAlgoChange={this.handleAlgorithm} algo={this.state.algorithm}/> 
-        <Button behaviour='Reset' clickCallback={this.handleReset} /> 
-        <Button behaviour='Play' clickCallback={this.handlePlay} /> 
+        <div className="OptionBar__upper">
+          <ScaleSlider onScaleChange={this.handleScale} value={numObjects} />
+          <AlgorithmSelect onAlgoChange={this.handleAlgorithm} algo={this.state.algorithm}/> 
+        </div>
+        <div className="OptionBar__lower">
+          <Button behaviour='Reset' clickCallback={this.handleReset} /> 
+          <Button behaviour='Play' clickCallback={this.handlePlay} /> 
+        </div>
       </div>
     )
 

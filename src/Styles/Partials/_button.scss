@@ -8,3 +8,10 @@
     letter-spacing: 0.02em;
     padding: 0.7em 2.5em;
 }
+
+@media (max-width: 480px) {
+    .Button {
+        font-size: 0.7em;
+        padding: 0.8em 3em;
+    }
+}

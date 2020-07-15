@@ -11,8 +11,62 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.OptionBar__upper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.OptionBar__lower {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 480px) {
+  .OptionBar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .OptionBar__upper {
+    margin-top: 4%;
+    height: 60%;
+  }
+  .OptionBar__lower {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
 }
 
 .Visualizer {
@@ -39,6 +93,7 @@
 
 .AlgoSelect {
   padding: 0.5em 0.84em;
+  height: 80%;
   border: none;
   border: 1px solid dodgerblue;
   color: #1e7edf;
@@ -51,14 +106,22 @@
   -webkit-appearance: none;
 }
 
+@media (max-width: 480px) {
+  .AlgoSelect {
+    height: 40%;
+  }
+}
+
 .ScaleSlider {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 35%;
 }
 
 .ScaleSlider__text {
-  padding: 0 3%;
+  text-align: center;
+  width: 98%;
 }
 
 .Button {
@@ -72,6 +135,13 @@
   font-weight: bold;
   letter-spacing: 0.02em;
   padding: 0.7em 2.5em;
+}
+
+@media (max-width: 480px) {
+  .Button {
+    font-size: 0.7em;
+    padding: 0.8em 3em;
+  }
 }
 
 html, body, #root, .App {
